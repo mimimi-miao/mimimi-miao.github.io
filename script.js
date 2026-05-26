@@ -134,7 +134,7 @@ document.querySelectorAll('.mobile-link').forEach(link => {
 
 // ==================== 打字效果 ====================
 const typingElement = document.getElementById('typingText');
-const texts = ['定量药理学研究者', 'Pop-PK/PD 建模师', '数据科学家', 'Python 开发者'];
+const texts = ['定量药理学研究', 'Pop-PK/PD 建模', '数据科学', 'Python/R/NONMEM'];
 let textIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
