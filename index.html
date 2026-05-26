@@ -3,176 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>张同学 - 个人主页</title>
+    <title>缪泽涛 | Quantitative Pharmacology</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">张同学</div>
-            <ul class="nav-menu">
-                <li><a href="#home">首页</a></li>
-                <li><a href="#about">关于我</a></li>
-                <li><a href="#education">教育背景</a></li>
-                <li><a href="#projects">项目经验</a></li>
-                <li><a href="#skills">技能清单</a></li>
-                <li><a href="#resume">简历</a></li>
-                <li><a href="#contact">联系方式</a></li>
-            </ul>
+    <!-- 粒子背景 -->
+    <canvas id="particles"></canvas>
+
+    <!-- 光标跟随光晕 -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand">ZM</div>
+        <div class="nav-links">
+            <a href="#hero" class="nav-link active">首页</a>
+            <a href="#about" class="nav-link">关于</a>
+            <a href="#skills" class="nav-link">技能</a>
+            <a href="#projects" class="nav-link">项目</a>
+            <a href="#contact" class="nav-link">联系</a>
+        </div>
+        <div class="nav-toggle" id="navToggle">
+            <span></span><span></span><span></span>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
+    <!-- 移动端菜单 -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#hero" class="mobile-link">首页</a>
+        <a href="#about" class="mobile-link">关于</a>
+        <a href="#skills" class="mobile-link">技能</a>
+        <a href="#projects" class="mobile-link">项目</a>
+        <a href="#contact" class="mobile-link">联系</a>
+    </div>
+
+    <!-- Hero 区域 -->
+    <section class="hero" id="hero">
         <div class="hero-content">
-            <h1 class="hero-title">致力于构建高效、可扩展的分布式系统</h1>
-            <p class="hero-subtitle">全栈开发者，专注用户体验与后端逻辑的完美结合</p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">查看项目</a>
-                <a href="#contact" class="btn btn-secondary">联系我</a>
+            <div class="hero-badge reveal">北京大学药学院</div>
+            <h1 class="hero-title">
+                <span class="line reveal">你好，我是</span>
+                <span class="line reveal gradient-text">缪泽涛</span>
+                <span class="line reveal typing" id="typingText"></span>
+            </h1>
+            <p class="hero-desc reveal">专注定量药理学 · Pop-PK/PD群体建模 · 数据驱动的药物研发</p>
+            <div class="hero-buttons reveal">
+                <a href="#projects" class="btn btn-primary">
+                    <span>查看项目</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="resume.pdf" class="btn btn-outline" target="_blank">
+                    <span>下载简历</span>
+                    <i class="fas fa-download"></i>
+                </a>
+            </div>
+            <div class="hero-stats reveal">
+                <div class="stat">
+                    <span class="stat-num" data-target="2">0</span>
+                    <span class="stat-label">研究项目</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num" data-target="3">0</span>
+                    <span class="stat-label">建模工具</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num" data-target="5">0</span>
+                    <span class="stat-label">专业技能</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image reveal">
+            <div class="image-wrapper">
+                <img src="头像.jpg" alt="缪泽涛">
+                <div class="image-ring"></div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>向下滚动</span>
+        </div>
+    </section>
+
+    <!-- 关于我 -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title reveal">
+                <span class="title-tag">&lt;关于我 /&gt;</span>
+            </h2>
+            <div class="about-grid">
+                <div class="about-card glass reveal">
+                    <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>教育背景</h3>
+                    <p class="card-main">北京大学药学院</p>
+                    <p class="card-sub">定量系统药理学方向</p>
+                    <p class="card-detail">专注药物动力学与药效学量化研究<br>Pop-PK/PD群体建模、数理统计分析</p>
+                </div>
+                <div class="about-card glass reveal">
+                    <div class="card-icon"><i class="fas fa-flask"></i></div>
+                    <h3>研究方向</h3>
+                    <p class="card-main">定量药理学</p>
+                    <p class="card-sub">Quantitative Pharmacology</p>
+                    <p class="card-detail">群体药代动力学建模<br>肿瘤生长抑制模型<br>虚拟患者临床试验仿真</p>
+                </div>
+                <div class="about-card glass reveal">
+                    <div class="card-icon"><i class="fas fa-code"></i></div>
+                    <h3>技术栈</h3>
+                    <p class="card-main">数据驱动</p>
+                    <p class="card-sub">多语言 · 多工具</p>
+                    <p class="card-detail">Python / R / NONMEM / MATLAB<br>Git / Claude Code</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- About Me Section -->
-    <section id="about" class="about">
+    <!-- 技能 -->
+    <section class="section section-dark" id="skills">
         <div class="container">
-            <h2 class="section-title">关于我</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>具备极强的自驱力与快速学习能力，能在一周内掌握并应用新技术栈。</p>
-                    <p>擅长逻辑分析，享受从0到1解决复杂技术挑战的过程。</p>
-                    <p>拥有良好的跨团队沟通能力，曾多次在校级项目中担任核心开发或协调角色。</p>
-                </div>
-                <div class="about-image">
-                    <div class="image-placeholder">[个人照片]</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="education">
-        <div class="container">
-            <h2 class="section-title">教育背景</h2>
-            <div class="education-timeline">
-                <div class="education-item">
-                    <div class="education-date">2022 - 2026</div>
-                    <div class="education-content">
-                        <h3>XX大学 - 计算机科学与技术专业</h3>
-                        <p>学分绩点排名前5%，连续两年获得校级一等奖学金</p>
-                        <p>核心专业课（数据结构、算法、操作系统）平均成绩95+</p>
-                    </div>
-                </div>
-                <div class="education-item">
-                    <div class="education-date">2024 - 2025</div>
-                    <div class="education-content">
-                        <h3>实验室研究经历</h3>
-                        <p>在实验室参与XX课题研究，负责数据预处理与模型初步验证工作</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">项目经验</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>分布式电商系统</h3>
-                    <p>主导了基于Spring Boot的后端架构设计，通过Redis缓存优化使系统并发处理能力提升了40%。</p>
-                    <div class="project-tech">Spring Boot, Redis, MySQL</div>
-                </div>
-                <div class="project-card">
-                    <h3>智能数据看板</h3>
-                    <p>利用Vue3和TypeScript开发了响应式管理后台，实现了多维度数据看板的实时动态展示。</p>
-                    <div class="project-tech">Vue3, TypeScript, ECharts</div>
-                </div>
-                <div class="project-card">
-                    <h3>图像识别系统</h3>
-                    <p>实现并对比了多种CNN模型，在XX数据集上达到了98.5%的识别准确率。</p>
-                    <div class="project-tech">Python, TensorFlow, OpenCV</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">技能清单</h2>
+            <h2 class="section-title reveal">
+                <span class="title-tag">&lt;专业技能 /&gt;</span>
+            </h2>
             <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>编程语言</h3>
-                    <ul>
-                        <li>Java (JVM调优)</li>
-                        <li>Go (并发编程)</li>
-                        <li>Python (数据科学生态)</li>
-                    </ul>
+                <div class="skill-card glass reveal" data-skill="95">
+                    <div class="skill-icon"><i class="fas fa-chart-bar"></i></div>
+                    <h3>数据分析</h3>
+                    <p>统计分析 · 数据可视化 · 机器学习</p>
+                    <div class="skill-bar"><div class="skill-fill" style="--width: 95%"></div></div>
                 </div>
-                <div class="skill-category">
-                    <h3>框架与中间件</h3>
-                    <ul>
-                        <li>Spring Cloud</li>
-                        <li>React</li>
-                        <li>MySQL (索引优化)</li>
-                        <li>Docker & Kubernetes</li>
-                    </ul>
+                <div class="skill-card glass reveal" data-skill="90">
+                    <div class="skill-icon"><i class="fas fa-project-diagram"></i></div>
+                    <h3>Pop-PK/PD 建模</h3>
+                    <p>群体药代动力学 · 药效学建模</p>
+                    <div class="skill-bar"><div class="skill-fill" style="--width: 90%"></div></div>
                 </div>
-                <div class="skill-category">
-                    <h3>软技能</h3>
-                    <ul>
-                        <li>技术文档撰写 (Markdown/LaTeX)</li>
-                        <li>敏捷开发流程 (Scrum)</li>
-                        <li>中英文双语协作</li>
-                    </ul>
+                <div class="skill-card glass reveal" data-skill="88">
+                    <div class="skill-icon"><i class="fab fa-python"></i></div>
+                    <h3>Python / R</h3>
+                    <p>数据处理 · 统计建模 · 可视化</p>
+                    <div class="skill-bar"><div class="skill-fill" style="--width: 88%"></div></div>
+                </div>
+                <div class="skill-card glass reveal" data-skill="85">
+                    <div class="skill-icon"><i class="fas fa-cogs"></i></div>
+                    <h3>NONMEM / MATLAB</h3>
+                    <p>药代动力学建模 · 数值仿真</p>
+                    <div class="skill-bar"><div class="skill-fill" style="--width: 85%"></div></div>
+                </div>
+                <div class="skill-card glass reveal" data-skill="80">
+                    <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                    <h3>定量药理仿真</h3>
+                    <p>临床试验仿真 · 剂量优化</p>
+                    <div class="skill-bar"><div class="skill-fill" style="--width: 80%"></div></div>
+                </div>
+                <div class="skill-card glass reveal" data-skill="82">
+                    <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
+                    <h3>Git / Claude Code</h3>
+                    <p>版本控制 · AI辅助开发</p>
+                    <div class="skill-bar"><div class="skill-fill" style="--width: 82%"></div></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Resume Section -->
-    <section id="resume" class="resume">
+    <!-- 项目经历 -->
+    <section class="section" id="projects">
         <div class="container">
-            <h2 class="section-title">简历</h2>
-            <div class="resume-content">
-                <p>查看我的完整简历，了解更多详细信息</p>
-                <a href="./resume.pdf" class="btn btn-primary" target="_blank">下载简历</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">联系方式</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <h3>邮箱</h3>
-                        <p>zhang.student@email.com</p>
+            <h2 class="section-title reveal">
+                <span class="title-tag">&lt;项目经历 /&gt;</span>
+            </h2>
+            <div class="projects-grid">
+                <div class="project-card glass reveal">
+                    <div class="project-header">
+                        <div class="project-icon"><i class="fas fa-pills"></i></div>
+                        <span class="project-tag">新药研发</span>
                     </div>
-                    <div class="contact-item">
-                        <h3>GitHub</h3>
-                        <p>github.com/zhangstudent</p>
+                    <h3>1类新药TQ-B3525 的 PopPK/PD 与肿瘤动力学研究</h3>
+                    <p>负责I期临床 PopPK 建模与 R/R FL 患者群体肿瘤生长抑制（TGI）模型构建。在机制探索中比对多种耐药路径，确立了预测性更优的暴露依赖耐药模型。</p>
+                    <div class="project-highlights">
+                        <div class="highlight">
+                            <i class="fas fa-check-circle"></i>
+                            <span>识别AST与RBC两个关键协变量</span>
+                        </div>
+                        <div class="highlight">
+                            <i class="fas fa-check-circle"></i>
+                            <span>采用M3法精准处理BQL数据</span>
+                        </div>
+                        <div class="highlight">
+                            <i class="fas fa-check-circle"></i>
+                            <span>为给药方案优化提供定量依据</span>
+                        </div>
                     </div>
-                    <div class="contact-item">
-                        <h3>LinkedIn</h3>
-                        <p>linkedin.com/in/zhangstudent</p>
+                    <div class="project-tools">
+                        <span>NONMEM</span><span>R</span><span>Python</span>
+                    </div>
+                </div>
+                <div class="project-card glass reveal">
+                    <div class="project-header">
+                        <div class="project-icon"><i class="fas fa-syringe"></i></div>
+                        <span class="project-tag">临床研究</span>
+                    </div>
+                    <h3>rFVIIIFc融合蛋白在重型血友病A中的PopPK研究</h3>
+                    <p>独立开展注射用重组 FVIII-Fc 的 PopPK基础模型确立。基于B1结构进行个体基线估计，通过观测值对数转化成功解决了基线与加和误差难以区分的参数识别难题。</p>
+                    <div class="project-highlights">
+                        <div class="highlight">
+                            <i class="fas fa-check-circle"></i>
+                            <span>筛选体重(WT)作为显著协变量</span>
+                        </div>
+                        <div class="highlight">
+                            <i class="fas fa-check-circle"></i>
+                            <span>完成虚拟患者临床试验仿真(CTS)</span>
+                        </div>
+                        <div class="highlight">
+                            <i class="fas fa-check-circle"></i>
+                            <span>指导临床个体化给药设计</span>
+                        </div>
+                    </div>
+                    <div class="project-tools">
+                        <span>NONMEM</span><span>MATLAB</span><span>R</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- 联系方式 -->
+    <section class="section section-dark" id="contact">
+        <div class="container">
+            <h2 class="section-title reveal">
+                <span class="title-tag">&lt;联系我 /&gt;</span>
+            </h2>
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <h3>期待与你交流</h3>
+                    <p>无论是学术合作、项目讨论还是任何问题，都欢迎联系我。</p>
+                    <div class="contact-items">
+                        <a href="mailto:2310307211@stu.pku.edu.cn" class="contact-item glass">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <span class="contact-label">邮箱</span>
+                                <span class="contact-value">2310307211@stu.pku.edu.cn</span>
+                            </div>
+                        </a>
+                        <a href="https://github.com/mimimi-miao" class="contact-item glass" target="_blank">
+                            <i class="fab fa-github"></i>
+                            <div>
+                                <span class="contact-label">GitHub</span>
+                                <span class="contact-value">github.com/mimimi-miao</span>
+                            </div>
+                        </a>
+                        <div class="contact-item glass">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <span class="contact-label">地址</span>
+                                <span class="contact-value">北京市海淀区学院路38号北京大学医学部</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper reveal">
+                    <form class="contact-form glass" id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" required>
+                            <label for="name">姓名</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" required>
+                            <label for="email">邮箱</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" rows="4" required></textarea>
+                            <label for="message">留言</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <span>发送消息</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 张同学. 保留所有权利。</p>
+        <div class="footer-content">
+            <div class="footer-brand">ZETAO MIAO</div>
+            <div class="footer-links">
+                <a href="mailto:2310307211@stu.pku.edu.cn"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/mimimi-miao" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+            <p class="footer-copy">&copy; 2026 缪泽涛. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
